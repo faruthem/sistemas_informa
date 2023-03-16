@@ -1,0 +1,9 @@
+#Archivos que no quiero que se suban
+#Configuración js
+node_modules
+#Archivo variables entorno (servidor)
+.env
+#Configuración de mi docker
+docker-compose.yml
+#Nootas del proyecto
+notas.txt
