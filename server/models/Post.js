@@ -1,12 +1,12 @@
 //Aquí hago mis esquemas chato
 
 import mongoose from "mongoose";
-
+//Modelo que queremos guardar 
 const postSchema = new mongoose.Schema({
     title:{
         type: String,
-        require: true,
-        trim: ture //taamaño ajustable
+        require: true, //si o si tiene que llevar un valor
+        trim: true //tamaño ajustable
     },
     description:{
         type: String,
@@ -14,8 +14,8 @@ const postSchema = new mongoose.Schema({
         trim: true
     },
     image:{
-        url: String,
-        public_id: String
+        url: String, //URL de la imagen
+        public_id: String // La ID para poder eliminarla
     }
 })
 
