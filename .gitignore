@@ -7,3 +7,5 @@ node_modules
 docker-compose.yml
 #Nootas del proyecto
 notas.txt
+#Expos de mis compañeros
+expo_dany.txt
