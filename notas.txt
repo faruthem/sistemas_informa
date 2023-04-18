@@ -1,0 +1,56 @@
+#paso 1 iniciar con node js
+npm init -y 
+
+#paso 2 npm i nombre de las dependencias
+npm i express express-fileupload mongoose dotenv fs-extra http-errors morgan cloudinary
+#http errors es para que me mande mensajes por consola 
+
+
+#paso 3 desarrollo, crear estructura del desarrollo
+
+#paso 4 instalar nodemon -D
+
+#En mis rutas va a estar Server -> Rutas 
+                                -> Modelos 
+                                -> Colecciones
+                                -> Vistas
+                                ...
+                                -> Etc.
+#Instalar dotENV y Thunder client
+
+# en package.json pongo "type": "module",
+
+#Instalar docker-compose.yml, sirve para crear un contenedor y guardar mi configuración
+#Para ejecutarlo es con el comando docker-compose up
+#Para darlo de baja es con el comando docker-compose down
+
+# npm run dev para correr el servidor después de configurar mi archivo package.json
+
+#Para conectar la base de datos desde mongo atlas 
+#connet using visual 
+#en usuario = es el usuario 
+#y en password le ponemos el password
+
+Cadena de conexión
+#La cadena de conexión se divide en un archivo .env 
+# se realizó separación de cadena de conexión en archivos config.js y archivos .env :D
+#Se agregó archivo git ignore para evitar subir mis archivos al github
+
+PAra MONGODB
+post.find(); esto es como si yo hiciera un (select * from post)
+Post.find(ID)  select * from post where ID=?
+
+#Nota para los hurones que lean esto
+Al enviar un método (el que sea) es necesario agregar lo siguiente:
+En Headers:
+Content-type : application/json
+
+#Se realizó un try-catch en mis posts.controllers.js en caso de que
+# No se pueda dar la conexión 
+
+#Registrarse en gloudinary
+#fs-extra ayuda a subir a cloudinary
+# npm install cloudinary
+# express-fileupload: carga de archivos 
+#express me ayuda a crear mi servidor
+

@@ -6,6 +6,6 @@ node_modules
 #Configuración de mi docker
 docker-compose.yml
 #Nootas del proyecto
-notas.txt
+
 #Expos de mis compañeros
 expo_dany.txt
