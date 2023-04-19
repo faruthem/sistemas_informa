@@ -54,3 +54,22 @@ Content-type : application/json
 # express-fileupload: carga de archivos 
 #express me ayuda a crear mi servidor
 
+NOTAS PARA MI FRONTEND
+
+1.- EJECUTAR el comando:
+npx create-react-app client
+
+2.- Entramos en cd client
+
+3.- Ejecutamos npm start
+Luego que todo qude cool nos salimos con ctrl + c
+
+4.- Procedemos a instalar los siguientes paquetes:
+
+npm i react-router-dom react-hot-toast react-icons axios formik yup
+
+5.- Intalar modulos para tailwindCSS
+npm install -D tailwindcss
+
+y después seguimos los pasos de su documentación:
+https://tailwindcss.com/docs/guides/create-react-app

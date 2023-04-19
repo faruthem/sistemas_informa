@@ -8,7 +8,7 @@ import { MONGOOD_URI } from './config.js' // importo desde config
 export async function connectDB() {
     try {
         const db = await mongoose.connect(MONGOOD_URI)// cadena de conexión, mongood_uri viene de .env
-        console.log('Base de datos conectada al corazón de los hurones', db.connection.name)// mensaje de que estás conectado, trata con name
+        console.log('Base de datos conectada al corazón de los hurones', db.connection.name, ' online')// mensaje de que estás conectado, trata con name
     } catch (error) {
         console.error(error)
     }

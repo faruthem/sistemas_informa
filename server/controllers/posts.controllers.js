@@ -1,11 +1,8 @@
 //Aquí voy a poner las acciones de mis rutas, para segmentar el código; la vida es buena y nuestra muerte nos condena
 import Post from "../models/Post.js"
-//import post from "../models/Post.js"
+import { uploadImage, deleteImage} from "../libs/cloudinary.js"
 import fs from 'fs-extra'
-import { uploadImage,deleteImage } from "../libs/cloudinary.js"
 
-
-//import { fstat, uploadImage } from "../libs/cloudinary.js"
 //Función que nos regresa todos los datos de posts
 export const getPosts = async (req, res) => {
     try {
@@ -22,13 +19,14 @@ export const getPosts = async (req, res) => {
 export const createPost = async (req, res) => {
     try {
         const { title, description } = req.body //Variable se va a alimentar de la varibel tittle y description
-        await fs.remove(req.files.image.tempFilePath)
-        let image
-        if (req.files.image) {
-            uploadImage(req.files.image.tempFilePath)
-            //console.log(result)
+        //await fs.remove(req.files.image.tempFilePath)
+        let image;
+
+        if (req.files.image) { //Si la imagen existe
+            const result = await uploadImage(req.files.image.tempFilePath)
+            await fs.remove(req.files.image.tempFilePath)
             image = {
-                url: result.secure_url,
+                url: result.secure_url, //Guardo la URL con Http
                 public_id: result.public_id
             }
             
@@ -45,8 +43,8 @@ export const createPost = async (req, res) => {
 //Funcion para modificar un dato 
 export const updatePost = async (req, res) => {
     try {
-        const updatePost = await Post.updateOne({ _id: req.params.id }, req.body, { new: true })
-        return res.send('updatePost')
+        const updatedPost = await Post.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        return res.send(updatedPost)
         //res.send('Modificar Tercer mensaje: El olvidado te escucha, los hurones se retuercen')//tercera ruta
     } catch (error) {
         //console.error(error.message)
@@ -60,10 +58,9 @@ export const deletePost = async (req, res) => {
         if (!postRemoved) return res.sendStatus(404)
 
         //Si trae una imagen, borrala 
-        if (postRemoved.public_id) {
-            await deleteImage(postRemoved.public_id)    
+        if (postRemoved.image.public_id) {
+            await deleteImage(postRemoved.image.public_id)    
         }
-
         return res.sendStatus(204)
         //res.send('Eliminar: Cuarto mensaje: La historia se repite, tu rostro se derrite ')//cuarta ruta
     } catch (error) {

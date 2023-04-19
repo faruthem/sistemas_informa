@@ -7,9 +7,9 @@
     "dev": "nodemon server"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "author": "Kevin",
+  "license": "UNLICENSED",
+  "description": "Trabajo para la materia de sistemas de informacion",
   "dependencies": {
     "cloudinary": "^1.35.0",
     "dotenv": "^16.0.3",
@@ -21,6 +21,14 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.21"
-  }
+    "nodemon": "^2.0.22"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nodesource/distributions.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nodesource/distributions/issues"
+  },
+  "homepage": "https://github.com/nodesource/distributions#readme"
 }

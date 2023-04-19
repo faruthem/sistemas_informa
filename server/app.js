@@ -7,7 +7,7 @@ const app = express()//Creo una constante de express
 //Middleware
 app.use(express.json())//Para manejar mis archivos .json
 app.use(fileUpload({
-    useTempFiles: true,
+    useTempFiles: true, //Cuando se suba una imagen guardala en una carpeta
     tempFileDir: './upload'  //Crea la carpeta para guardar mi imagen
 }))
 
