@@ -22,7 +22,7 @@ export const createPost = async (req, res) => {
         //await fs.remove(req.files.image.tempFilePath)
         let image;
 
-        if (req.files.image) { //Si la imagen existe
+        if (req.files?.image) { //Si la imagen existe
             const result = await uploadImage(req.files.image.tempFilePath)
             await fs.remove(req.files.image.tempFilePath)
             image = {

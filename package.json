@@ -4,7 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon server"
+    "dev": "nodemon server --ignore client"
   },
   "keywords": [],
   "author": "Kevin",
