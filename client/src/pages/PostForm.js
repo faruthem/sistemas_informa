@@ -3,15 +3,17 @@ import * as Yup from 'yup'
 import { usePosts } from '../context/postContext'
 import { useNavigate, useParams, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { AiOutlineLoading3Quarters } from "react-icons/ai"
 
 
 export function PostForm() {
-  const { createPost, getPost } = usePosts()
+  const { createPost, getPost, updatePost } = usePosts()
   const navigate = useNavigate()
   const params = useParams()
   const [post, setPost] = useState({
     title: '',
-    description: ''
+    description: '',
+    image: null
   })
 
   useEffect(() => {
@@ -21,7 +23,7 @@ export function PostForm() {
         setPost(post);
       }
     })();
-  }, []);
+  }, [getPost, params.id]); //Aquí moví algo que no iba en el video, si falla algo quitar esto
 
   return (
     <div className='flex items-center justify-center'>
@@ -41,14 +43,20 @@ export function PostForm() {
           validationSchema={Yup.object({
             title: Yup.string().required("Title is required"),
             description: Yup.string().required("Description is required"),
+
           })}
           onSubmit={async (values, actions) => {
-            await createPost(values);
+            if (params.id) {
+              await updatePost(params.id, values)
+            } else {
+              await createPost(values);
+            }
+            actions.setSubmitting(false);
             navigate('/');
           }}
           enableReinitialize
         >
-          {({ handleSubmit }) => (
+          {({ handleSubmit, setFieldValue, isSubmitting }) => ( //setFieldValue: establece tú mismo el valor de un campo
             <Form onSubmit={handleSubmit}>
               <label
                 htmlFor='title'
@@ -85,11 +93,29 @@ export function PostForm() {
                 className='text-red-400 text-sm'
               />
 
+              <label
+                htmlFor='Description'
+                className='text-sm block font-bold text-gray-400'
+              >
+                Description
+              </label>
+              <input
+                type='file'
+                name='image'
+                className='px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full '
+                onChange={(e) => setFieldValue('image', e.target.files[0])}
+              />
+
               <button type='submit'
                 className='bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded mt-2
                text-white focus:outline-none disabled:bg-indigo-400'
+                disabled={isSubmitting}
               >
-                Save
+                {isSubmitting ?
+                  <AiOutlineLoading3Quarters className='animate-spin h-5 w-5' />
+                  : (
+                    'Save'
+                  )}
               </button>
             </Form>
           )}
